@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: marcos.romero
+      changes:
+        - createTable:
+            tableName: sample
+            columns:
+              - column:
+                  name: sample_id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: string_column
+                  type: varchar
+              - column:
+                  name: test_column
+                  type: varchar ARRAY

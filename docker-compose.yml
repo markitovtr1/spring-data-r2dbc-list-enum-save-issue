@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: user
+    ports:
+      - "5432:5432"
+
+  liquibase:
+    image: liquibase/liquibase
+    command: ["liquibase", "update"]
+    volumes:
+      - "./src/main/resources/liquibase.changeSet.yml:/liquibase/liquibase.yml"
+      - "./src/main/resources/liquibase.properties:/liquibase/liquibase.properties"
+    depends_on:
+      - postgres
